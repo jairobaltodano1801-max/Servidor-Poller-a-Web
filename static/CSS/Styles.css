@@ -1,0 +1,221 @@
+/* RESET GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --rojo-principal: #bd1616;
+    --dorado: #ffc107;
+    --oscuro: #1a1a1a;
+    --blanco: #ffffff;
+    --gris-claro: #f8f9fa;
+}
+
+body {
+    background-color: var(--gris-claro);
+    color: var(--oscuro);
+}
+
+/* HEADER Y NAVEGACIÓN */
+.header {
+    background-color: var(--blanco);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 8%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logo h1 {
+    color: var(--rojo-principal);
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.logo h1 span {
+    color: var(--dorado);
+}
+
+.nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.nav ul li {
+    margin: 0 15px;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav ul li a:hover, .nav ul li a.active {
+    color: var(--rojo-principal);
+}
+
+.btn-delivery {
+    background-color: var(--rojo-principal);
+    color: var(--blanco);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-delivery:hover {
+    background-color: #961010;
+    transform: scale(1.05);
+}
+
+/* HERO BANNER (Inspirado en la gran presentación visual de las pollerías) */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1200') no-repeat center center/cover;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--blanco);
+    padding: 0 20px;
+}
+
+.hero-content h2 {
+    font-size: 45px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-buttons a {
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background-color: var(--dorado);
+    color: var(--oscuro);
+}
+
+.btn-primary:hover {
+    background-color: #e0a800;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--blanco);
+    border: 2px solid var(--blanco);
+}
+
+.btn-secondary:hover {
+    background-color: var(--blanco);
+    color: var(--oscuro);
+}
+
+/* SECCIÓN ESPECIALIDADES */
+.main-content {
+    padding: 60px 8%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--dorado);
+    margin: 10px auto 0 auto;
+    border-radius: 2px;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.category-card {
+    background-color: var(--blanco);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-info {
+    padding: 20px;
+}
+
+.card-info h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.card-info p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.btn-card {
+    text-decoration: none;
+    color: var(--rojo-principal);
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: gap 0.2s;
+}
+
+.btn-card:hover {
+    gap: 10px;
+}
+
+/* FOOTER */
+.footer {
+    background-color: var(--oscuro);
+    color: #888;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
