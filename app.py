@@ -1,49 +1,27 @@
 import os
-import json
+from flask import Flask, render_template, jsonify
 
-def verificar_integridad_sistema():
-    """
-    Modulo de control de calidad para el despliegue de la plataforma web.
-    Verifica la existencia de los recursos estaticos del frontend y 
-    simula la carga del diccionario de datos para los productos de la carta.
-    """
-    print("--- SISTEMA DE CONTROL DE CALIDAD - WEB POLERIA ---")
-    
-    # Rutas relativas del proyecto frontend
-    archivos_requeridos = [
-        "index.html",
-        "css/style.css"
-    ]
-    
-    estado_archivos = True
-    print("\n[INFO] Validando rutas de archivos estaticos...")
-    
-    for archivo in archivos_requeridos:
-        if os.path.exists(archivo):
-            print(f"Recurso verificado: {archivo} [OK]")
-        else:
-            print(f"Error critico: No se encontro el recurso {archivo}")
-            estado_archivos = False
+# Inicializamos Flask y le indicamos las carpetas que creaste
+app = Flask(__name__, static_folder='static', template_folder='templates')
 
-    # Estructura de datos para simular respuesta de API local (JSON)
-    print("\n[INFO] Cargando matriz de productos en memoria...")
-    catalogo_combos = {
-        "C001": {"denominacion": "1/4 Pollo a la Brasa + Papas + Ensalada", "precio": 24.90, "stock": True},
-        "C002": {"denominacion": "1 Pollo a la Brasa Familiar", "precio": 68.90, "stock": True},
-        "C003": {"denominacion": "Parrilla Personal Norkys", "precio": 45.00, "stock": False}
-    }
+# Tu diccionario original de combos de la pollería
+catalogo_combos = {
+    "C001": {"denominacion": "1/4 Pollo a la Brasa + Papas + Ensalada", "precio": 24.90, "stock": True},
+    "C002": {"denominacion": "1 Pollo a la Brasa Familiar", "precio": 68.90, "stock": True},
+    "C003": {"denominacion": "Parrilla Personal Norkys", "precio": 45.00, "stock": False}
+}
 
-    print("Lista de productos disponibles:")
-    for codigo, datos in catalogo_combos.items():
-        if datos["stock"]:
-            print(f" Code: {codigo} | {datos['denominacion']} | S/. {datos['precio']:.2f}")
+# RUTA PRINCIPAL: Cuando alguien entre a tu web, Flask leerá el index.html de /templates
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-    print("\n--------------------------------------------------")
-    if estado_archivos:
-        print("RESULTADO DE AUDITORIA: Sistema listo para despliegue.")
-    else:
-        print("RESULTADO DE AUDITORIA: Error en la estructura de directorios.")
-    print("--------------------------------------------------")
+# RUTA API: Por si en el futuro usas JavaScript para listar los combos dinámicamente
+@app.route('/api/combos')
+def get_combos():
+    return jsonify(catalogo_combos)
 
-if __name__ == "__main__":
-    verificar_integridad_sistema()
+if __name__ == '__main__':
+    # El puerto lo asignará el hosting (como Render) dinámicamente en internet
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
